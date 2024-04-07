@@ -1,32 +1,33 @@
 package hu.tothlp
 
-import hu.tothlp.hu.tothlp.frakta.app.core.FraktaApi
+import hu.tothlp.hu.tothlp.frakta.app.api.InputHandler
 import hu.tothlp.hu.tothlp.frakta.app.core.coffee.CoffeeRepository
-import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.Logger
-import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.LoggerFactory
-import hu.tothlp.hu.tothlp.frakta.app.core.di.Beans
-import hu.tothlp.hu.tothlp.frakta.app.core.di.Beans.getBean
+import hu.tothlp.hu.tothlp.frakta.app.core.di.BeanRegistry
+import hu.tothlp.hu.tothlp.frakta.app.core.di.BeanRegistry.getBean
 
 class Frakta(
-	private val api: FraktaApi = getBean<FraktaApi>(),
 	private val coffeeRepository: CoffeeRepository = getBean<CoffeeRepository>(),
-	private val fraktaApi: FraktaApi = getBean<FraktaApi>(),
-	private val logger: Logger = getBean<LoggerFactory>().getLogger(Frakta::class.java)
+	private val inputHandler: InputHandler = getBean<InputHandler>(),
 ) {
+	/**
+	 * Runs all necessary initialization, then delegates running to the [InputHandler].
+	 */
 	fun run(args: Array<String>) {
 		init()
-		fraktaApi.start(args.toList())
+		inputHandler.start(args.toList())
 	}
 
 	private fun init() {
-		logger.info("Version: ${api.getVersion()}")
 		coffeeRepository.init()
 	}
 
 }
 
+/**
+ * Entry point of the application.
+ * The running of the application is delegated to the [Frakta] class. Naturally, the [BeanRegistry] need to be initialized before running the application.
+ */
 fun main(args: Array<String>) {
-	Beans.init()
-	val app = Frakta()
-	app.run(args)
+	BeanRegistry.init()
+	Frakta().run(args)
 }

@@ -1,21 +1,18 @@
 package hu.tothlp.hu.tothlp.frakta.app.api
 
-import com.github.ajalt.clikt.core.CliktCommand
 import hu.tothlp.hu.tothlp.frakta.app.core.FraktaApi
 import hu.tothlp.hu.tothlp.frakta.app.core.coffee.CoffeeService
 import hu.tothlp.hu.tothlp.frakta.app.core.common.dto.CoffeeDto
 import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.ServerError
 import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.Logger
 import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.LoggerFactory
-import hu.tothlp.hu.tothlp.frakta.app.core.di.Beans.getBean
+import hu.tothlp.hu.tothlp.frakta.app.core.di.BeanRegistry.getBean
 import java.util.*
 
 class ConsoleFraktaApi(
 	private val coffeeService: CoffeeService = getBean<CoffeeService>(),
 	private val logger: Logger = getBean<LoggerFactory>().getLogger(ConsoleFraktaApi::class.java)
-): FraktaApi, CliktCommand() {
-
-	override fun start(argv: List<String>) = main(argv)
+): FraktaApi {
 
 	override fun getVersion(): String {
 		val properties = Properties()
@@ -49,9 +46,5 @@ class ConsoleFraktaApi(
 
 	override fun deleteCoffee(id: Long) {
 		coffeeService.deleteCoffee(id)
-	}
-
-	override fun run() {
-		logger.info("Hello Clikt!")
 	}
 }
