@@ -1,10 +1,10 @@
 package hu.tothlp
 
-import hu.tothlp.hu.tothlp.frakta.app.api.FraktaApi
-import hu.tothlp.hu.tothlp.frakta.app.common.logger.Logger
-import hu.tothlp.hu.tothlp.frakta.app.common.logger.LoggerFactory
-import hu.tothlp.hu.tothlp.frakta.app.di.Beans
-import hu.tothlp.hu.tothlp.frakta.app.di.Beans.getBean
+import hu.tothlp.hu.tothlp.frakta.app.core.FraktaApi
+import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.Logger
+import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.LoggerFactory
+import hu.tothlp.hu.tothlp.frakta.app.core.di.Beans
+import hu.tothlp.hu.tothlp.frakta.app.core.di.Beans.getBean
 
 class Frakta(
 	private val api: FraktaApi = getBean<FraktaApi>(),

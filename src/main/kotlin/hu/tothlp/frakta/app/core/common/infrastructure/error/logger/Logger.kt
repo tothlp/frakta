@@ -1,4 +1,4 @@
-package hu.tothlp.hu.tothlp.frakta.app.common.logger
+package hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger
 
 interface Logger {
 	fun debug(message: String)

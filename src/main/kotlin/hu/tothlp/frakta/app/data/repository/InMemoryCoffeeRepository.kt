@@ -1,21 +1,27 @@
 package hu.tothlp.hu.tothlp.frakta.app.data.repository
 
-import hu.tothlp.hu.tothlp.frakta.app.data.Coffee
+import hu.tothlp.hu.tothlp.frakta.app.core.coffee.CoffeeRepository
+import hu.tothlp.hu.tothlp.frakta.app.core.common.model.Coffee
 
 class InMemoryCoffeeRepository: CoffeeRepository {
+
+	private val dataSource = mutableSetOf<Coffee>()
+
 	override fun addCoffee(coffee: Coffee): Long {
-		TODO("Not yet implemented")
+		coffee.id = dataSource.size.toLong() + 1
+		dataSource.add(coffee)
+		return coffee.id
 	}
 
-	override fun getCoffee(id: Long): Coffee {
-		TODO("Not yet implemented")
+	override fun getCoffee(id: Long): Coffee? {
+		return dataSource.find { it.id == id }
 	}
 
-	override fun listCoffees(): List<Coffee> {
-		TODO("Not yet implemented")
+	override fun listAllCoffees(): List<Coffee> {
+		return dataSource.toList()
 	}
 
 	override fun deleteCoffee(id: Long) {
-		TODO("Not yet implemented")
+		dataSource.removeIf { it.id == id }
 	}
 }

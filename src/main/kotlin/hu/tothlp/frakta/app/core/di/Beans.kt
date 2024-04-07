@@ -1,17 +1,19 @@
-package hu.tothlp.hu.tothlp.frakta.app.di
+package hu.tothlp.hu.tothlp.frakta.app.core.di
 
-import hu.tothlp.hu.tothlp.frakta.app.api.OfflineFraktaApi
-import hu.tothlp.hu.tothlp.frakta.app.common.logger.ConsoleLoggerFactory
+import hu.tothlp.hu.tothlp.frakta.app.api.ConsoleFraktaApi
+import hu.tothlp.hu.tothlp.frakta.app.core.coffee.SimpleCoffeeService
+import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.ConsoleLoggerFactory
 import hu.tothlp.hu.tothlp.frakta.app.data.repository.InMemoryCoffeeRepository
-import hu.tothlp.hu.tothlp.frakta.app.service.SimpleCoffeeService
 
 object Beans {
 
+
 	fun init() {
+		// TODO: Make configurable from cli args, which API bean to use. this way starting the app as a cli app, or a REST api server, can be configured.
 		registerBean("loggerFactory", ConsoleLoggerFactory())
 		registerBean("coffeeRepository", InMemoryCoffeeRepository())
 		registerBean("coffeeService", SimpleCoffeeService())
-		registerBean("fraktaApi", OfflineFraktaApi())
+		registerBean("fraktaApi", ConsoleFraktaApi())
 	}
 
 	fun getBeanByName(name: String): Any? {
