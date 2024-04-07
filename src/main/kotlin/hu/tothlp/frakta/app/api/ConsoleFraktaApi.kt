@@ -1,5 +1,6 @@
 package hu.tothlp.hu.tothlp.frakta.app.api
 
+import com.github.ajalt.clikt.core.CliktCommand
 import hu.tothlp.hu.tothlp.frakta.app.core.FraktaApi
 import hu.tothlp.hu.tothlp.frakta.app.core.coffee.CoffeeService
 import hu.tothlp.hu.tothlp.frakta.app.core.common.dto.CoffeeDto
@@ -12,7 +13,10 @@ import java.util.*
 class ConsoleFraktaApi(
 	private val coffeeService: CoffeeService = getBean<CoffeeService>(),
 	private val logger: Logger = getBean<LoggerFactory>().getLogger(ConsoleFraktaApi::class.java)
-): FraktaApi {
+): FraktaApi, CliktCommand() {
+
+	override fun start(argv: List<String>) = main(argv)
+
 	override fun getVersion(): String {
 		val properties = Properties()
 		properties.load(javaClass.classLoader.getResourceAsStream("version.properties"))
@@ -45,5 +49,9 @@ class ConsoleFraktaApi(
 
 	override fun deleteCoffee(id: Long) {
 		coffeeService.deleteCoffee(id)
+	}
+
+	override fun run() {
+		logger.info("Hello Clikt!")
 	}
 }

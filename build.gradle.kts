@@ -19,6 +19,7 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
+    implementation("com.github.ajalt.clikt:clikt:4.2.2")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
