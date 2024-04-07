@@ -5,7 +5,7 @@ import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.failNotFo
 import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.Logger
 import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.LoggerFactory
 import hu.tothlp.hu.tothlp.frakta.app.core.common.model.Coffee
-import hu.tothlp.hu.tothlp.frakta.app.core.di.Beans.getBean
+import hu.tothlp.hu.tothlp.frakta.app.core.di.BeanRegistry.getBean
 
 class SimpleCoffeeService(
 	private val coffeeRepository: CoffeeRepository = getBean<CoffeeRepository>(),
@@ -21,11 +21,11 @@ class SimpleCoffeeService(
 	}
 
 	override fun listCoffees(): List<CoffeeDto> {
-		return emptyList()
+		return coffeeRepository.listAllCoffees().map { it.toDto() }
 	}
 
 	override fun deleteCoffee(id: Long) {
-		logger.info("Deleting coffee with id: $id")
+		coffeeRepository.deleteCoffee(id)
 	}
 
 	private fun CoffeeDto.toCoffee() = Coffee().also {

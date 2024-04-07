@@ -2,11 +2,14 @@ package hu.tothlp.hu.tothlp.frakta.app.data.repository
 
 import hu.tothlp.hu.tothlp.frakta.app.core.coffee.CoffeeRepository
 import hu.tothlp.hu.tothlp.frakta.app.core.common.model.Coffee
-import hu.tothlp.hu.tothlp.frakta.app.data.repository.entity.CoffeeEntity
+import hu.tothlp.hu.tothlp.frakta.app.data.entity.CoffeeEntity
 
 class InMemoryCoffeeRepository : CoffeeRepository {
 
 	private val dataSource = mutableSetOf<CoffeeEntity>()
+	private var lastId = 0L
+	private fun generateId() = ++lastId
+
 	override fun init() {
 		dataSource.addAll(
 			listOf(
@@ -74,8 +77,6 @@ class InMemoryCoffeeRepository : CoffeeRepository {
 	override fun deleteCoffee(id: Long) {
 		dataSource.removeIf { it.id == id }
 	}
-
-	private fun generateId() = dataSource.size.toLong() + 1
 
 	private fun Coffee.toEntity() = CoffeeEntity(
 		id = id.takeIf { it != 0L } ?: generateId(),

@@ -1,4 +1,4 @@
-package hu.tothlp.hu.tothlp.frakta.app.data.repository.entity
+package hu.tothlp.hu.tothlp.frakta.app.data.entity
 
 class CoffeeEntity(
 	var id: Long = 0L,
