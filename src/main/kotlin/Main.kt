@@ -28,6 +28,11 @@ class Frakta(
  * The running of the application is delegated to the [Frakta] class. Naturally, the [BeanRegistry] need to be initialized before running the application.
  */
 fun main(args: Array<String>) {
+	try {
 	BeanRegistry.init()
 	Frakta().run(args)
+	} catch (e: Exception) {
+		println("An error occurred: ${e.message}")
+		e.printStackTrace()
+	}
 }
