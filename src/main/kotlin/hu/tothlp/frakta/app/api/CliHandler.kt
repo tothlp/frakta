@@ -3,6 +3,7 @@ package hu.tothlp.hu.tothlp.frakta.app.api
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.parameters.options.option
+import com.github.ajalt.clikt.parameters.options.prompt
 import com.github.ajalt.clikt.parameters.options.required
 import com.github.ajalt.clikt.parameters.options.versionOption
 import com.github.ajalt.clikt.parameters.types.long
@@ -40,7 +41,7 @@ class CliHandler : InteractionHandler {
 
 	class ListCoffees(
 		private val coffeeService: CoffeeService = getBean<CoffeeService>()
-	) : CliktCommand() {
+	) : CliktCommand(name = "list", help = "List all coffees") {
 		override fun run() {
 			val coffees = coffeeService.listCoffees()
 			val t = Terminal()
@@ -65,9 +66,8 @@ class CliHandler : InteractionHandler {
 
 	class GetCoffee(
 		private val coffeeService: CoffeeService = getBean<CoffeeService>()
-	) : CliktCommand() {
-		private val coffeeId by option().long().required()
-
+	) : CliktCommand(name = "show", help = "Show a coffee by id") {
+		private val coffeeId: Long by option("-id", help = "Coffee ID").long().prompt()
 		override fun run() {
 			val t = Terminal()
 			val coffee = coffeeService.getCoffee(coffeeId) ?: fail("Coffee not found")
