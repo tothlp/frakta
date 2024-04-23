@@ -4,6 +4,7 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
+import com.github.ajalt.clikt.parameters.options.versionOption
 import com.github.ajalt.clikt.parameters.types.long
 import com.github.ajalt.mordant.table.table
 import com.github.ajalt.mordant.terminal.Terminal
@@ -14,8 +15,10 @@ import hu.tothlp.hu.tothlp.frakta.app.core.interaction.InteractionHandler
 import java.util.*
 
 class CliHandler : InteractionHandler {
+
 	override fun start(argv: List<String>) = try {
 		FraktaCli()
+		.versionOption(getVersion(), names = setOf("--version", "-v"))
 		.subcommands(listOf(
 			ListCoffees(),
 			GetCoffee(),
@@ -25,7 +28,7 @@ class CliHandler : InteractionHandler {
 		t.danger("An error occurred: ${e.message}")
 	}
 
-	fun getVersion(): String {
+	private fun getVersion(): String {
 		val properties = Properties()
 		properties.load(javaClass.classLoader.getResourceAsStream("version.properties"))
 		return properties.getProperty("version") ?: "n/a"
