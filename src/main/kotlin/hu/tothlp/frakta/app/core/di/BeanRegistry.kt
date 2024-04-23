@@ -11,7 +11,7 @@ object BeanRegistry {
 
 	val beanContainer = mutableMapOf<String,Any>()
 
-	fun init() {
+	init {
 		// TODO: Make configurable from cli args, which API bean to use. this way starting the app as a cli app, or a REST api server, can be configured.
 		registerBean("terminal", Terminal())
 		registerBean("versionHandler", VersionHandler())

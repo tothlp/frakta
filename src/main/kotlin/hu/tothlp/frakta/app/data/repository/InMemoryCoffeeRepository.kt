@@ -10,7 +10,7 @@ class InMemoryCoffeeRepository : CoffeeRepository {
 	private var lastId = 0L
 	private fun generateId() = ++lastId
 
-	override fun init() {
+	init {
 		dataSource.addAll(
 			listOf(
 				CoffeeEntity(
