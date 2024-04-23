@@ -1,7 +1,6 @@
 package hu.tothlp.hu.tothlp.frakta.app.core.di
 
 import hu.tothlp.hu.tothlp.frakta.app.api.CliHandler
-import hu.tothlp.hu.tothlp.frakta.app.api.ConsoleFraktaApi
 import hu.tothlp.hu.tothlp.frakta.app.core.coffee.SimpleCoffeeService
 import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.logger.ConsoleLoggerFactory
 import hu.tothlp.hu.tothlp.frakta.app.data.repository.InMemoryCoffeeRepository
@@ -15,7 +14,6 @@ object BeanRegistry {
 		registerBean("loggerFactory", ConsoleLoggerFactory())
 		registerBean("coffeeRepository", InMemoryCoffeeRepository())
 		registerBean("coffeeService", SimpleCoffeeService())
-		registerBean("fraktaApi", ConsoleFraktaApi())
 		registerBean("inputHandler", CliHandler())
 	}
 

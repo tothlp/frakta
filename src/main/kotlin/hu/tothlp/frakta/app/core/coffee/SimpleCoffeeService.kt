@@ -16,8 +16,8 @@ class SimpleCoffeeService(
 		return coffeeRepository.addCoffee(coffee)
 	}
 
-	override fun getCoffee(id: Long): CoffeeDto {
-		return coffeeRepository.getCoffee(id)?.toDto() ?: failNotFoundError("Coffee not found with id: $id")
+	override fun getCoffee(id: Long): CoffeeDto? {
+		return coffeeRepository.getCoffee(id)?.toDto()
 	}
 
 	override fun listCoffees(): List<CoffeeDto> {
