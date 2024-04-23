@@ -1,8 +1,10 @@
 package hu.tothlp.hu.tothlp.frakta.app.core.di
 
-import hu.tothlp.hu.tothlp.frakta.app.api.CliHandler
+import com.github.ajalt.mordant.terminal.Terminal
+import hu.tothlp.hu.tothlp.frakta.app.api.cli.CliHandler
 import hu.tothlp.hu.tothlp.frakta.app.core.coffee.SimpleCoffeeService
 import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.logger.ConsoleLoggerFactory
+import hu.tothlp.hu.tothlp.frakta.app.core.version.VersionHandler
 import hu.tothlp.hu.tothlp.frakta.app.data.repository.InMemoryCoffeeRepository
 
 object BeanRegistry {
@@ -11,6 +13,8 @@ object BeanRegistry {
 
 	fun init() {
 		// TODO: Make configurable from cli args, which API bean to use. this way starting the app as a cli app, or a REST api server, can be configured.
+		registerBean("terminal", Terminal())
+		registerBean("versionHandler", VersionHandler())
 		registerBean("loggerFactory", ConsoleLoggerFactory())
 		registerBean("coffeeRepository", InMemoryCoffeeRepository())
 		registerBean("coffeeService", SimpleCoffeeService())
