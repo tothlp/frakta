@@ -1,4 +1,4 @@
-package hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger
+package hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.logger
 
 class ConsoleLoggerFactory: LoggerFactory {
 	private val loggers = mutableMapOf<Class<*>, Logger>()

@@ -2,8 +2,8 @@ package hu.tothlp.hu.tothlp.frakta.app.core.coffee
 
 import hu.tothlp.hu.tothlp.frakta.app.core.common.dto.CoffeeDto
 import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.failNotFoundError
-import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.Logger
-import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.LoggerFactory
+import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.logger.Logger
+import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.logger.LoggerFactory
 import hu.tothlp.hu.tothlp.frakta.app.core.common.model.Coffee
 import hu.tothlp.hu.tothlp.frakta.app.core.di.BeanRegistry.getBean
 

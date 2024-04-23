@@ -4,8 +4,8 @@ import hu.tothlp.hu.tothlp.frakta.app.core.FraktaApi
 import hu.tothlp.hu.tothlp.frakta.app.core.coffee.CoffeeService
 import hu.tothlp.hu.tothlp.frakta.app.core.common.dto.CoffeeDto
 import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.ServerError
-import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.Logger
-import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.logger.LoggerFactory
+import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.logger.Logger
+import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.logger.LoggerFactory
 import hu.tothlp.hu.tothlp.frakta.app.core.di.BeanRegistry.getBean
 import java.util.*
 

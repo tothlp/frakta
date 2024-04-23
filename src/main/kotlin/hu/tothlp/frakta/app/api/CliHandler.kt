@@ -6,8 +6,9 @@ import com.github.ajalt.mordant.table.table
 import com.github.ajalt.mordant.terminal.Terminal
 import hu.tothlp.hu.tothlp.frakta.app.core.FraktaApi
 import hu.tothlp.hu.tothlp.frakta.app.core.di.BeanRegistry.getBean
+import hu.tothlp.hu.tothlp.frakta.app.core.interaction.InteractionHandler
 
-class CliHandler : InputHandler {
+class CliHandler : InteractionHandler {
 	override fun start(argv: List<String>) = FraktaCli()
 		.subcommands(listOf(ListCoffees())).main(argv)
 
