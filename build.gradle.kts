@@ -5,7 +5,7 @@ val kotlinVersion = "1.9.23"
 plugins {
     kotlin("jvm") version "1.9.23"
     // needed for funcioning jar.
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+//    id("com.github.johnrengelman.shadow") version "7.1.2"
     kotlin("plugin.serialization") version "1.9.22"
     id("io.ktor.plugin") version "2.3.10"
 }
@@ -32,19 +32,23 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
-
-tasks.shadowJar {
-    archiveBaseName.set("frakta")
-    archiveVersion.set(appVersion)
-    archiveClassifier.set("")
-    dependsOn(generateVersionProperties)
+application {
+    mainClass.set("hu.tothlp.MainKt")
+    version = appVersion
 }
 
-tasks.jar {
-    manifest {
-        attributes["Main-Class"] = "hu.tothlp.MainKt"
-    }
-}
+//tasks.shadowJar {
+//    archiveBaseName.set("frakta")
+//    archiveVersion.set(appVersion)
+//    archiveClassifier.set("")
+//    dependsOn(generateVersionProperties)
+//}
+//
+//tasks.jar {
+//    manifest {
+//        attributes["Main-Class"] = "hu.tothlp.MainKt"
+//    }
+//}
 
 tasks.build {
     dependsOn(tasks.shadowJar)
