@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm") version "1.9.23"
     // needed for funcioning jar.
     id("com.github.johnrengelman.shadow") version "7.1.2"
+    kotlin("plugin.serialization") version "1.9.22"
 }
 
 group = "hu.tothlp"
@@ -18,7 +19,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     implementation("com.github.ajalt.clikt:clikt:4.2.2")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
