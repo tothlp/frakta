@@ -24,6 +24,7 @@ class FraktaCli(
 		ListCoffeeCommand(),
 		GetCoffeeCommand(),
 		AddCoffeeCommand(),
+		DeleteCoffeeCommand()
 	)
 
 
