@@ -1,13 +1,16 @@
 package hu.tothlp.hu.tothlp.frakta.app.data.repository
 
+import com.github.ajalt.mordant.terminal.Terminal
 import hu.tothlp.frakta.app.data.convert.decodeEntry
 import hu.tothlp.frakta.app.data.convert.encodeEntry
 import hu.tothlp.hu.tothlp.frakta.app.core.coffee.CoffeeRepository
 import hu.tothlp.hu.tothlp.frakta.app.core.common.model.Coffee
+import hu.tothlp.hu.tothlp.frakta.app.core.di.BeanRegistry.getBean
 import hu.tothlp.hu.tothlp.frakta.app.data.entity.CoffeeEntity
 import java.io.File
 
 class FileCoffeeRepository(
+	private val terminal: Terminal = getBean<Terminal>()
 ) : CoffeeRepository {
 
 	private val dataSource = mutableMapOf<Int, CoffeeEntity>()
@@ -36,7 +39,6 @@ class FileCoffeeRepository(
 			}
 
 		}
-		println(dataSource)
 		lastId = dataSource.values.maxOf { it.id }
 	}
 
@@ -86,10 +88,10 @@ class FileCoffeeRepository(
 		)
 	)
 
-	override fun addCoffee(coffee: Coffee): Long {
+	override fun addCoffee(coffee: Coffee): Coffee {
 		val entity = coffee.toEntity()
-		dataFile.writer().use { it.appendLine(entity.encodeEntry()) }
-		return entity.id
+		dataFile.appendText("${entity.encodeEntry()}${System.lineSeparator()}")
+		return entity.toModel()
 	}
 
 

@@ -5,7 +5,7 @@ import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.error.ServerErr
 
 interface CoffeeService {
 	@Throws(ServerError::class)
-	fun addCoffee(request: CoffeeDto): Long?
+	fun addCoffee(request: CoffeeDto): CoffeeDto?
 	fun getCoffee(id: Long): CoffeeDto?
 	fun listCoffees(): List<CoffeeDto>
 	fun deleteCoffee(id: Long)

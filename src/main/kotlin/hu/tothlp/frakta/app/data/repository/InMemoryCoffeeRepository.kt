@@ -59,10 +59,10 @@ class InMemoryCoffeeRepository : CoffeeRepository {
 		)
 	}
 
-	override fun addCoffee(coffee: Coffee): Long {
+	override fun addCoffee(coffee: Coffee): Coffee {
 		val entity = coffee.toEntity()
 		dataSource.add(entity)
-		return entity.id
+		return entity.toModel()
 	}
 
 

@@ -23,6 +23,7 @@ class FraktaCli(
 	private fun registerSubcommands() = listOf(
 		ListCoffeeCommand(),
 		GetCoffeeCommand(),
+		AddCoffeeCommand(),
 	)
 
 

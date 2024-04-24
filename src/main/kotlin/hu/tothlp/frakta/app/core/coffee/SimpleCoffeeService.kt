@@ -10,9 +10,9 @@ class SimpleCoffeeService(
 	private val coffeeRepository: CoffeeRepository = getBean<CoffeeRepository>(),
 	private val logger: Logger = getBean<LoggerFactory>().getLogger(SimpleCoffeeService::class.java)
 ): CoffeeService {
-	override fun addCoffee(request: CoffeeDto): Long? {
+	override fun addCoffee(request: CoffeeDto): CoffeeDto? {
 		val coffee = request.toCoffee()
-		return coffeeRepository.addCoffee(coffee)
+		return coffeeRepository.addCoffee(coffee)?.toDto()
 	}
 
 	override fun getCoffee(id: Long): CoffeeDto? {
