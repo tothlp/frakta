@@ -2,6 +2,7 @@ package hu.tothlp.hu.tothlp.frakta.app.core.di
 
 import com.github.ajalt.mordant.terminal.Terminal
 import hu.tothlp.hu.tothlp.frakta.app.api.cli.CliHandler
+import hu.tothlp.hu.tothlp.frakta.app.api.rest.RestHandler
 import hu.tothlp.hu.tothlp.frakta.app.core.coffee.SimpleCoffeeService
 import hu.tothlp.hu.tothlp.frakta.app.core.common.infrastructure.logger.ConsoleLoggerFactory
 import hu.tothlp.hu.tothlp.frakta.app.core.version.VersionHandler
@@ -19,7 +20,7 @@ object BeanRegistry {
 		registerBean("loggerFactory", ConsoleLoggerFactory())
 		registerBean("coffeeRepository", FileCoffeeRepository())
 		registerBean("coffeeService", SimpleCoffeeService())
-		registerBean("inputHandler", CliHandler())
+		registerBean("inputHandler", RestHandler())
 	}
 
 	fun getBeanByName(name: String): Any? {
